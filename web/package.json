@@ -1,0 +1,37 @@
+{
+	"name": "nest-react-prisma-gql",
+	"version": "0.0.1",
+	"author": "Oleg Chepelev <yorkblansh@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"nest:prisma:generate": "yarn workspace nestjs run prisma generate",
+		"nest:prisma:migrate": "yarn workspace nestjs run prisma migrate dev --name 'init'",
+		"nest:start:dev": "yarn workspace nestjs run start:dev",
+		"nest:start:prod": "yarn workspace nestjs run start:prod",
+		"nest:symlink_common": "yarn workspace nestjs run symlink_common",
+		"nest:build": "yarn workspace nestjs run build",
+		"react:start": "yarn workspace reactapp run start",
+		"react:build": "yarn workspace reactapp run build"
+	},
+	"workspaces": {
+		"packages": [
+			"workspaces/*"
+		]
+	},
+	"packageManager": "yarn@3.2.4",
+	"devDependencies": {
+		"@yarnpkg/pnpify": "^4.0.0-rc.14",
+		"typescript": "^4.7.4"
+	},
+	"dependenciesMeta": {
+		"@prisma/client@4.1.1": {
+			"unplugged": true
+		},
+		"prettier@2.7.1": {
+			"unplugged": true
+		},
+		"prisma@4.1.1": {
+			"unplugged": true
+		}
+	}
+}
