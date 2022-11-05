@@ -23,11 +23,17 @@ model Donation {
   team        String?
 }
 
-model Shop {
-  id       Int       @id @default(autoincrement())
-  shopName String
-  address  String
-  // products Product[]
+// model Shop {
+//   id       Int       @id @default(autoincrement())
+//   shopName String
+//   address  String
+//   // products Product[]
+// }
+
+model Store {
+  id        Int    @id @default(autoincrement())
+  storeName String
+  address   String
 }
 
 model Product {

@@ -3,15 +3,22 @@ const prisma = new PrismaClient()
 
 async function main() {
 	await prisma.donation.deleteMany()
-	await prisma.shop.deleteMany()
+	await prisma.store.deleteMany()
 	await prisma.product.deleteMany()
 
-	const firstShop = await prisma.shop.create({
+	const firstStore = await prisma.store.create({
 		data: {
-			address: 'some intresting adress',
-			shopName: 'first shop',
+			address: 'adresssss',
+			storeName: 'firstshop',
 		},
 	})
+
+	// const firstShop = await prisma.shop.create({
+	// 	data: {
+	// 		address: 'some intresting adress',
+	// 		shopName: 'first shop',
+	// 	},
+	// })
 
 	const coffe = await prisma.product.create({
 		data: {
@@ -57,7 +64,7 @@ async function main() {
 		},
 	})
 
-	console.log({ alice, fish, firstShop, coffe, candy })
+	console.log({ alice, fish, firstStore, coffe, candy })
 }
 
 main()
