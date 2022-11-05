@@ -8,8 +8,8 @@ type product {
 	type: String
 	expirationDate: DateTime
 	deliveryDate: DateTime
-	shop: shop
-	shopId: Int
+	# shop: shop
+	# shopId: Int
 }
 
 input CreateProductInput {
