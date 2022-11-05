@@ -1,16 +1,13 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-// import { BotModule } from './bot/bot.module'
-// import { BotService } from './bot/bot.service'
+import {} from 'apollo-server-express'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+// import { DonationsResolver } from './donations/donations.resolver'
+import { DonationsModule } from './donations/donations.module'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
 import { ProductModule } from './product/product.module'
-
-import { ShopModule } from './shop/shop.module'
-
-import graphqlIsoDate from 'graphql-iso-date'
-const { GraphQLDateTime } = graphqlIsoDate
 
 @Module({
 	imports: [
@@ -19,14 +16,13 @@ const { GraphQLDateTime } = graphqlIsoDate
 			// plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 			playground: true,
 			typePaths: ['./**/*.graphql'],
-			resolvers: { DateTime: GraphQLDateTime },
 			subscriptions: {
 				'graphql-ws': true,
 				'subscriptions-transport-ws': true,
 			},
 		}),
+		DonationsModule,
 		ProductModule,
-		ShopModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

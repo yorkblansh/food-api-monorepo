@@ -1,0 +1,43 @@
+scalar DateTime
+
+type product {
+	id: Int!
+	count: Int!
+	productName: String!
+	price: Int!
+	type: String
+	expirationDate: DateTime
+	deliveryDate: DateTime
+	shop: Shop!
+}
+
+input CreateProductInput {
+	count: Int!
+	productName: String!
+	price: Int!
+	type: String
+	expirationDate: DateTime
+	deliveryDate: DateTime
+	# shop: Shop!
+}
+
+input UpdateProductInput {
+	count: Int!
+	productName: String!
+	price: Int!
+	type: String
+	expirationDate: DateTime
+	deliveryDate: DateTime
+	# shop: Shop!
+}
+
+type Query {
+	products: [product]!
+	product(id: Int!): product
+}
+
+type Mutation {
+	createProduct(createProductInput: CreateProductInput!): product!
+	updateProduct(updateProductInput: UpdateProductInput!): product!
+	removeProduct(id: Int!): product
+}

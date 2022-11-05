@@ -1,0 +1,29 @@
+type shop {
+	id: Int
+	shopName: String
+	address: String
+	# products: [product]
+}
+
+input CreateShopInput {
+	id: Int
+
+	# products: [Product!]
+}
+
+input UpdateShopInput {
+	id: Int
+
+	# products: [Product!]
+}
+
+type Query {
+	shops: [shop]!
+	shop(id: Int!): shop
+}
+
+type Mutation {
+	createShop(createShopInput: CreateShopInput!): shop!
+	updateShop(updateShopInput: UpdateShopInput!): shop!
+	removeShop(id: Int!): shop
+}
