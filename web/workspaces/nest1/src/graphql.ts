@@ -24,12 +24,12 @@ export class UpdateProductInput {
     count: number;
 }
 
-export class CreateShopInput {
-    id?: Nullable<number>;
+export class CreateStoreInput {
+    exampleField?: Nullable<number>;
 }
 
-export class UpdateShopInput {
-    id?: Nullable<number>;
+export class UpdateStoreInput {
+    id: number;
 }
 
 export class Donation {
@@ -51,9 +51,9 @@ export abstract class IQuery {
 
     abstract product(id: number): Nullable<product> | Promise<Nullable<product>>;
 
-    abstract shops(): Nullable<shop>[] | Promise<Nullable<shop>[]>;
+    abstract stores(): Nullable<Store>[] | Promise<Nullable<Store>[]>;
 
-    abstract shop(id: number): Nullable<shop> | Promise<Nullable<shop>>;
+    abstract store(id: number): Nullable<Store> | Promise<Nullable<Store>>;
 }
 
 export abstract class IMutation {
@@ -69,11 +69,11 @@ export abstract class IMutation {
 
     abstract removeProduct(id: number): Nullable<product> | Promise<Nullable<product>>;
 
-    abstract createShop(createShopInput: CreateShopInput): shop | Promise<shop>;
+    abstract createStore(createStoreInput: CreateStoreInput): Store | Promise<Store>;
 
-    abstract updateShop(updateShopInput: UpdateShopInput): shop | Promise<shop>;
+    abstract updateStore(updateStoreInput: UpdateStoreInput): Store | Promise<Store>;
 
-    abstract removeShop(id: number): Nullable<shop> | Promise<Nullable<shop>>;
+    abstract removeStore(id: number): Nullable<Store> | Promise<Nullable<Store>>;
 }
 
 export class Product {
@@ -84,13 +84,11 @@ export class Product {
     type?: Nullable<string>;
     expirationDate?: Nullable<DateTime>;
     deliveryDate?: Nullable<DateTime>;
-    shop?: Nullable<shop>;
-    shopId?: Nullable<number>;
 }
 
-export class Shop {
-    id?: Nullable<number>;
-    shopName?: Nullable<string>;
+export class Store {
+    id: number;
+    storeName?: Nullable<string>;
     address?: Nullable<string>;
 }
 

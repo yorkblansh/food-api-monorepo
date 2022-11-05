@@ -8,6 +8,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { DonationsModule } from './donations/donations.module'
 import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
 import { ProductModule } from './product/product.module'
+import { StoreModule } from './store/store.module';
 
 @Module({
 	imports: [
@@ -23,6 +24,7 @@ import { ProductModule } from './product/product.module'
 		}),
 		DonationsModule,
 		ProductModule,
+		StoreModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
