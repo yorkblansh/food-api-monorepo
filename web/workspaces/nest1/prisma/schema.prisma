@@ -10,18 +10,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Donation {
-  id          Int      @id @default(autoincrement())
-  count       Int
-  createdAt   DateTime @default(now())
-  /// @Validator.MinLength(3)
-  displayName String
-  /// @Validator.IsEmail()
-  email       String
-  mobile      String?
-  message     String?
-  team        String?
+generator nestgraphql {
+  provider               = "node node_modules/prisma-nestjs-graphql"
+  output                 = "../src/@generated/prisma-nestjs-graphql"
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
 }
+
+model User {
+  id    Int     @id @default(autoincrement())
+  name  String? @unique
+  /// @Validator.IsEmail()
+  email String? @unique
+  posts Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  viewCount Int      @default(0)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
+
+// model Donation {
+//   id          Int      @id @default(autoincrement())
+//   count       Int
+//   createdAt   DateTime @default(now())
+//   /// @Validator.MinLength(3)
+//   displayName String
+//   /// @Validator.IsEmail()
+//   email       String
+//   mobile      String?
+//   message     String?
+//   team        String?
+// }
 
 // model Shop {
 //   id       Int       @id @default(autoincrement())
@@ -30,20 +57,20 @@ model Donation {
 //   // products Product[]
 // }
 
-model Store {
-  id        Int    @id @default(autoincrement())
-  storeName String
-  address   String
-}
+// model Store {
+//   id        Int    @id @default(autoincrement())
+//   storeName String
+//   address   String
+// }
 
-model Product {
-  id             Int       @id @default(autoincrement())
-  count          Int
-  productName    String
-  price          Int
-  type           String?
-  expirationDate DateTime?
-  deliveryDate   DateTime?
-  // Shop           Shop?     @relation(fields: [shopId], references: [id])
-  shopId         Int?
-}
+// model Product {
+//   id             Int       @id @default(autoincrement())
+//   count          Int
+//   productName    String
+//   price          Int
+//   type           String?
+//   expirationDate DateTime?
+//   deliveryDate   DateTime?
+//   // Shop           Shop?     @relation(fields: [shopId], references: [id])
+//   shopId         Int?
+// }

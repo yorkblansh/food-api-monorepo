@@ -8,88 +8,74 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export class CreateDonationInput {
-    exampleField?: Nullable<number>;
+export class CreatePostInput {
+    content?: Nullable<string>;
+    createdAt: DateTime;
+    published: boolean;
+    title: string;
+    updatedAt: DateTime;
+    viewCount: number;
 }
 
-export class UpdateDonationInput {
-    id: number;
+export class UpdatePostInput {
+    content?: Nullable<string>;
+    createdAt: DateTime;
+    published: boolean;
+    title: string;
+    updatedAt: DateTime;
+    viewCount: number;
 }
 
-export class CreateProductInput {
-    count: number;
-}
-
-export class UpdateProductInput {
-    count: number;
-}
-
-export class CreateStoreInput {
-    exampleField?: Nullable<number>;
-}
-
-export class UpdateStoreInput {
-    id: number;
-}
-
-export class Donation {
-    id: number;
-    count: number;
-    displayName: string;
+export class CreateUserInput {
+    name: string;
     email: string;
-    mobile?: Nullable<string>;
-    team?: Nullable<string>;
-    message?: Nullable<string>;
+}
+
+export class UpdateUserInput {
+    name?: Nullable<string>;
+    email?: Nullable<string>;
+}
+
+export class Post {
+    id: number;
+    content?: Nullable<string>;
+    createdAt: DateTime;
+    published: boolean;
+    title: string;
+    updatedAt: DateTime;
+    viewCount: number;
+    author?: Nullable<User>;
 }
 
 export abstract class IQuery {
-    abstract donations(): Nullable<Donation>[] | Promise<Nullable<Donation>[]>;
+    abstract posts(): Nullable<Post>[] | Promise<Nullable<Post>[]>;
 
-    abstract donation(id: number): Nullable<Donation> | Promise<Nullable<Donation>>;
+    abstract post(id: number): Nullable<Post> | Promise<Nullable<Post>>;
 
-    abstract products(): Nullable<product>[] | Promise<Nullable<product>[]>;
+    abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
-    abstract product(id: number): Nullable<product> | Promise<Nullable<product>>;
-
-    abstract stores(): Nullable<Store>[] | Promise<Nullable<Store>[]>;
-
-    abstract store(id: number): Nullable<Store> | Promise<Nullable<Store>>;
+    abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export abstract class IMutation {
-    abstract createDonation(createDonationInput: CreateDonationInput): Donation | Promise<Donation>;
+    abstract createPost(createPostInput: CreatePostInput): Post | Promise<Post>;
 
-    abstract updateDonation(updateDonationInput: UpdateDonationInput): Donation | Promise<Donation>;
+    abstract updatePost(id: number, updatePostInput: UpdatePostInput): Post | Promise<Post>;
 
-    abstract removeDonation(id: number): Nullable<Donation> | Promise<Nullable<Donation>>;
+    abstract removePost(id: number): Nullable<Post> | Promise<Nullable<Post>>;
 
-    abstract createProduct(createProductInput: CreateProductInput): product | Promise<product>;
+    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
 
-    abstract updateProduct(updateProductInput: UpdateProductInput): product | Promise<product>;
+    abstract updateUser(originUsername: string, updateUserInput: UpdateUserInput): User | Promise<User>;
 
-    abstract removeProduct(id: number): Nullable<product> | Promise<Nullable<product>>;
-
-    abstract createStore(createStoreInput: CreateStoreInput): Store | Promise<Store>;
-
-    abstract updateStore(updateStoreInput: UpdateStoreInput): Store | Promise<Store>;
-
-    abstract removeStore(id: number): Nullable<Store> | Promise<Nullable<Store>>;
+    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
-export class Product {
-    id?: Nullable<number>;
-    count?: Nullable<number>;
-    productName?: Nullable<string>;
-    price?: Nullable<number>;
-    type?: Nullable<string>;
-    expirationDate?: Nullable<DateTime>;
-    deliveryDate?: Nullable<DateTime>;
-}
-
-export class Store {
+export class User {
     id: number;
-    storeName?: Nullable<string>;
-    address?: Nullable<string>;
+    name: string;
+    email: string;
+    posts?: Nullable<Nullable<Post>[]>;
 }
 
 export type DateTime = any;

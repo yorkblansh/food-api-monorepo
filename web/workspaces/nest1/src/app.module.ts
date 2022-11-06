@@ -5,10 +5,12 @@ import { AppService } from './app.service'
 import {} from 'apollo-server-express'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 // import { DonationsResolver } from './donations/donations.resolver'
-import { DonationsModule } from './donations/donations.module'
-import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
-import { ProductModule } from './product/product.module'
-import { StoreModule } from './store/store.module';
+// import { DonationsModule } from './donations/donations.module'
+// import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
+// import { ProductModule } from './product/product.module'
+// import { StoreModule } from './store/store.module';
+import { UserModule } from './user/user.module'
+import { PostModule } from './post/post.module'
 
 @Module({
 	imports: [
@@ -22,9 +24,8 @@ import { StoreModule } from './store/store.module';
 				'subscriptions-transport-ws': true,
 			},
 		}),
-		DonationsModule,
-		ProductModule,
-		StoreModule,
+		UserModule,
+		PostModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

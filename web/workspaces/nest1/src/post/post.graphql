@@ -1,0 +1,41 @@
+scalar DateTime
+
+type Post {
+	id: Int!
+	content: String
+	createdAt: DateTime!
+	published: Boolean!
+	title: String!
+	updatedAt: DateTime!
+	viewCount: Int!
+	author: User
+}
+
+input CreatePostInput {
+	content: String
+	createdAt: DateTime!
+	published: Boolean!
+	title: String!
+	updatedAt: DateTime!
+	viewCount: Int!
+}
+
+input UpdatePostInput {
+	content: String
+	createdAt: DateTime!
+	published: Boolean!
+	title: String!
+	updatedAt: DateTime!
+	viewCount: Int!
+}
+
+type Query {
+	posts: [Post]!
+	post(id: Int!): Post
+}
+
+type Mutation {
+	createPost(createPostInput: CreatePostInput!): Post!
+	updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
+	removePost(id: Int!): Post
+}
