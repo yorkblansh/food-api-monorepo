@@ -1,1 +1,0 @@
-# nest-react-prisma-gql
