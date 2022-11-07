@@ -10,3 +10,4 @@ web copy
 package-lock.json
 .pnp.cjs
 .pnp.loader.mjs
+web/workspaces/nest1/src/@generated/prisma-nestjs-graphql
