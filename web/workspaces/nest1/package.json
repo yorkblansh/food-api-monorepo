@@ -10,7 +10,7 @@
 		"seed": "ts-node prisma/seed"
 	},
 	"scripts": {
-		"gen-typings": "ts-node ./src/gt/generate-typings",
+		"gen-typings": "ts-node ./src/generate-typings/generate-typings",
 		"dev": "vite",
 		"build": "vite build",
 		"prebuild": "rimraf dist",
