@@ -4,6 +4,8 @@ const prisma = new PrismaClient()
 async function main() {
 	await prisma.post.deleteMany()
 	await prisma.user.deleteMany()
+	await prisma.profile.deleteMany()
+	await prisma.tag.deleteMany()
 
 	// const firstStore = await prisma.store.create({
 	// 	data: {
@@ -37,6 +39,20 @@ async function main() {
 		})
 
 		console.log({ profile })
+
+		const tag = await prisma.tag.create({
+			data: {
+				name: `tag${i + 1}`,
+			},
+		})
+
+		console.log({ tag })
+
+		const post2tags =
+			await prisma.$executeRaw`INSERT INTO _TagPostRelation (A,B)
+		VALUES( ${i + 1},${i + 1});`
+
+		console.log({ post2tags })
 	}
 
 	// const firstShop = await prisma.shop.create({
