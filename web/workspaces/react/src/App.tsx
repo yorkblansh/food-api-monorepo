@@ -1,32 +1,54 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import './App.css'
+import './App.scss'
+import { useQuery, gql } from '@apollo/client'
+// import { Post } from './shared/typings/graphql'
+import './Table.scss'
+
+const GET_POSTS = gql`
+	query Posts {
+		posts {
+			id
+			content
+			title
+		}
+	}
+`
+
+interface ComponentProps {
+	element: any
+	index: number
+}
+
+const Component = ({ element, index }: ComponentProps) => {
+	const rows = Object.entries(element).map(([key, value]) => {
+		return (
+			<div>
+				<div className="element">
+					<div className="value">{value ? value.toString() : ''}</div>
+				</div>
+			</div>
+		)
+	})
+
+	return <div className="kk">{rows.map((el) => el)}</div>
+}
 
 function App() {
-	const [count, setCount] = useState(0)
+	// const [count, setCount] = useState(0)
+	const { loading, error, data } = useQuery<{ posts: {}[] }>(GET_POSTS)
 
+	console.log(data)
 	return (
 		<div className="App">
-			<div>
-				<a href="https://vitejs.dev" target="_blank">
-					<img src="/vite.svg" className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://reactjs.org" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
+			<div className="table">
+				<div className="kk">
+					{data && Object.keys(data?.posts[0] as {}).map((e) => <div>{e}</div>)}
+				</div>
+				{data?.posts.map((element, i) => (
+					<Component {...{ element }} index={i} />
+				))}
 			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
 		</div>
 	)
 }
