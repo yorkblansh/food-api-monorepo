@@ -11,19 +11,19 @@
 export class CreatePostInput {
     content?: Nullable<string>;
     createdAt: DateTime;
-    published: boolean;
-    title: string;
+    published: boolean = false;
+    title!: string;
     updatedAt: DateTime;
-    viewCount: number;
+    viewCount!: number;
 }
 
 export class UpdatePostInput {
     content?: Nullable<string>;
     createdAt: DateTime;
-    published: boolean;
-    title: string;
+    published: boolean = false;
+    title!: string;
     updatedAt: DateTime;
-    viewCount: number;
+    viewCount!: number;
 }
 
 export class CreateProfileInput {
@@ -35,16 +35,16 @@ export class UpdateProfileInput {
 }
 
 export class CreateTagInput {
-    name: string;
+    name!: string;
 }
 
 export class UpdateTagInput {
-    name: string;
+    name!: string;
 }
 
 export class CreateUserInput {
-    name: string;
-    email: string;
+    name!: string;
+    email!: string;
 }
 
 export class UpdateUserInput {
@@ -53,13 +53,13 @@ export class UpdateUserInput {
 }
 
 export class Post {
-    id: number;
+    id!: number;
     content?: Nullable<string>;
     createdAt: DateTime;
-    published: boolean;
-    title: string;
+    published: boolean = false;
+    title!: string;
     updatedAt: DateTime;
-    viewCount: number;
+    viewCount!: number;
     author?: Nullable<User>;
     tags?: Nullable<Nullable<Tag>[]>;
 }
@@ -109,7 +109,7 @@ export abstract class IMutation {
 }
 
 export class Profile {
-    id: number;
+    id!: number;
     bio?: Nullable<string>;
     user?: Nullable<User>;
 }
@@ -121,9 +121,9 @@ export class Tag {
 }
 
 export class User {
-    id: number;
-    name: string;
-    email: string;
+    id!: number;
+    name!: string;
+    email!: string;
     posts?: Nullable<Nullable<Post>[]>;
     profile?: Nullable<Profile>;
 }
