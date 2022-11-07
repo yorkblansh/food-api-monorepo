@@ -26,6 +26,14 @@ export class UpdatePostInput {
     viewCount: number;
 }
 
+export class CreateProfileInput {
+    bio?: Nullable<string>;
+}
+
+export class UpdateProfileInput {
+    bio?: Nullable<string>;
+}
+
 export class CreateUserInput {
     name: string;
     email: string;
@@ -52,6 +60,10 @@ export abstract class IQuery {
 
     abstract post(id: number): Nullable<Post> | Promise<Nullable<Post>>;
 
+    abstract profiles(): Nullable<Profile>[] | Promise<Nullable<Profile>[]>;
+
+    abstract profile(id: number): Nullable<Profile> | Promise<Nullable<Profile>>;
+
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
     abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
@@ -64,6 +76,12 @@ export abstract class IMutation {
 
     abstract removePost(id: number): Nullable<Post> | Promise<Nullable<Post>>;
 
+    abstract createProfile(userWhereUniqueInput: UpdateUserInput, createProfileInput: CreateProfileInput): Profile | Promise<Profile>;
+
+    abstract updateProfile(id: number, updateProfileInput: UpdateProfileInput): Profile | Promise<Profile>;
+
+    abstract removeProfile(id: number): Nullable<Profile> | Promise<Nullable<Profile>>;
+
     abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
 
     abstract updateUser(originUsername: string, updateUserInput: UpdateUserInput): User | Promise<User>;
@@ -71,11 +89,18 @@ export abstract class IMutation {
     abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
+export class Profile {
+    id: number;
+    bio?: Nullable<string>;
+    user?: Nullable<User>;
+}
+
 export class User {
     id: number;
     name: string;
     email: string;
     posts?: Nullable<Nullable<Post>[]>;
+    profile?: Nullable<Profile>;
 }
 
 export type DateTime = any;

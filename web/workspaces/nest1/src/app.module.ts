@@ -11,6 +11,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 // import { StoreModule } from './store/store.module';
 import { UserModule } from './user/user.module'
 import { PostModule } from './post/post.module'
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
 	imports: [
@@ -26,6 +27,7 @@ import { PostModule } from './post/post.module'
 		}),
 		UserModule,
 		PostModule,
+		ProfileModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
