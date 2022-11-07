@@ -28,6 +28,15 @@ async function main() {
 			},
 		})
 		console.log({ post })
+
+		const profile = await prisma.profile.create({
+			data: {
+				bio: `bio${i + 1}`,
+				userId: i + 1,
+			},
+		})
+
+		console.log({ profile })
 	}
 
 	// const firstShop = await prisma.shop.create({
