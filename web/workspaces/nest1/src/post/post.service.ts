@@ -18,7 +18,11 @@ export class PostService {
 	}
 
 	findAll() {
-		return this.prismaService.post.findMany()
+		return this.prismaService.post.findMany({
+			include: {
+				tags: true,
+			},
+		})
 
 		// return `This action returns all post`;
 	}
@@ -26,7 +30,10 @@ export class PostService {
 	findOne(postWhereUniqueInput: PostWhereUniqueInput) {
 		return this.prismaService.post.findUnique({
 			where: postWhereUniqueInput,
-			include: { author: true },
+			include: {
+				author: true,
+				tags: true,
+			},
 		})
 		// return `This action returns a #${id} post`
 	}

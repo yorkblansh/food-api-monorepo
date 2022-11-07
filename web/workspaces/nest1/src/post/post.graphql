@@ -9,6 +9,7 @@ type Post {
 	updatedAt: DateTime!
 	viewCount: Int!
 	author: User
+	tags: [Tag]
 }
 
 input CreatePostInput {
