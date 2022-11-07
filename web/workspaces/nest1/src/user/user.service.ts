@@ -23,7 +23,11 @@ export class UserService {
 	findOne(userWhereUniqueInput: Prisma.UserWhereUniqueInput) {
 		return this.prismaService.user.findUnique({
 			where: userWhereUniqueInput,
-			include: { posts: true },
+			include: {
+				posts: true,
+				profile: true,
+				// Profile: true,
+			},
 		})
 		// return `This action returns a #${id} post`
 	}
