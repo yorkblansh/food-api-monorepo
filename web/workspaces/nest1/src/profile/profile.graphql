@@ -1,0 +1,27 @@
+type Profile {
+	id: Int!
+	bio: String
+	user: User
+}
+
+input CreateProfileInput {
+	bio: String
+}
+
+input UpdateProfileInput {
+	bio: String
+}
+
+type Query {
+	profiles: [Profile]!
+	profile(id: Int!): Profile
+}
+
+type Mutation {
+	createProfile(
+		userWhereUniqueInput: UpdateUserInput!
+		createProfileInput: CreateProfileInput!
+	): Profile!
+	updateProfile(id: Int!, updateProfileInput: UpdateProfileInput!): Profile!
+	removeProfile(id: Int!): Profile
+}
