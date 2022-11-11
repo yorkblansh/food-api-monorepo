@@ -13,6 +13,7 @@ import { UserModule } from './user/user.module'
 import { PostModule } from './post/post.module'
 import { ProfileModule } from './profile/profile.module';
 import { TagModule } from './tag/tag.module';
+import { RoleModule } from './role/role.module';
 
 @Module({
 	imports: [
@@ -30,6 +31,7 @@ import { TagModule } from './tag/tag.module';
 		PostModule,
 		ProfileModule,
 		TagModule,
+		RoleModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
