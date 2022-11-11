@@ -19,4 +19,7 @@ export class UserUncheckedCreateWithoutProfileInput {
 
     @Field(() => PostUncheckedCreateNestedManyWithoutAuthorInput, {nullable:true})
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput;
+
+    @Field(() => Int, {nullable:false})
+    roleId!: number;
 }

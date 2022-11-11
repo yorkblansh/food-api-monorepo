@@ -23,4 +23,7 @@ export class UserScalarWhereWithAggregatesInput {
 
     @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
     email?: StringNullableWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    roleId?: IntWithAggregatesFilter;
 }

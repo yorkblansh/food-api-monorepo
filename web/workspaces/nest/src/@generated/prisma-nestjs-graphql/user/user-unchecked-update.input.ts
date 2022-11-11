@@ -22,4 +22,7 @@ export class UserUncheckedUpdateInput {
 
     @Field(() => ProfileUncheckedUpdateOneWithoutUserNestedInput, {nullable:true})
     profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput;
+
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    roleId?: IntFieldUpdateOperationsInput;
 }

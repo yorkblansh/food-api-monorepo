@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { PostUpdateManyWithoutAuthorNestedInput } from '../post/post-update-many-without-author-nested.input';
 import { ProfileUpdateOneWithoutUserNestedInput } from '../profile/profile-update-one-without-user-nested.input';
+import { RoleUpdateOneRequiredWithoutUserNestedInput } from '../role/role-update-one-required-without-user-nested.input';
 
 @InputType()
 export class UserUpdateInput {
@@ -18,4 +19,7 @@ export class UserUpdateInput {
 
     @Field(() => ProfileUpdateOneWithoutUserNestedInput, {nullable:true})
     profile?: ProfileUpdateOneWithoutUserNestedInput;
+
+    @Field(() => RoleUpdateOneRequiredWithoutUserNestedInput, {nullable:true})
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput;
 }

@@ -23,4 +23,7 @@ export class UserUncheckedCreateInput {
 
     @Field(() => ProfileUncheckedCreateNestedOneWithoutUserInput, {nullable:true})
     profile?: ProfileUncheckedCreateNestedOneWithoutUserInput;
+
+    @Field(() => Int, {nullable:false})
+    roleId!: number;
 }

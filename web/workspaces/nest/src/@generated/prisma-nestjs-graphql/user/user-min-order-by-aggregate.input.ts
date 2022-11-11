@@ -13,4 +13,7 @@ export class UserMinOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     email?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    roleId?: keyof typeof SortOrder;
 }

@@ -13,4 +13,7 @@ export class UserMaxAggregate {
 
     @Field(() => String, {nullable:true})
     email?: string;
+
+    @Field(() => Int, {nullable:true})
+    roleId?: number;
 }

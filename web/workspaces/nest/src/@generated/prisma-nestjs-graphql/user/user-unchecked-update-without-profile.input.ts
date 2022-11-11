@@ -18,4 +18,7 @@ export class UserUncheckedUpdateWithoutProfileInput {
 
     @Field(() => PostUncheckedUpdateManyWithoutAuthorNestedInput, {nullable:true})
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput;
+
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    roleId?: IntFieldUpdateOperationsInput;
 }

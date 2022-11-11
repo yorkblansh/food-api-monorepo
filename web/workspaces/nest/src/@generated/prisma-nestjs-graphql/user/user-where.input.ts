@@ -4,6 +4,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { PostListRelationFilter } from '../post/post-list-relation-filter.input';
 import { ProfileRelationFilter } from '../profile/profile-relation-filter.input';
+import { RoleRelationFilter } from '../role/role-relation-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -31,4 +32,10 @@ export class UserWhereInput {
 
     @Field(() => ProfileRelationFilter, {nullable:true})
     profile?: ProfileRelationFilter;
+
+    @Field(() => RoleRelationFilter, {nullable:true})
+    role?: RoleRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    roleId?: IntFilter;
 }

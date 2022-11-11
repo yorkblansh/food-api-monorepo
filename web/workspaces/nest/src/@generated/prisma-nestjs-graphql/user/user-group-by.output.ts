@@ -19,6 +19,9 @@ export class UserGroupBy {
     @Field(() => String, {nullable:true})
     email?: string;
 
+    @Field(() => Int, {nullable:false})
+    roleId!: number;
+
     @Field(() => UserCountAggregate, {nullable:true})
     _count?: UserCountAggregate;
 
