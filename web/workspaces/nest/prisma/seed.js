@@ -18,6 +18,7 @@ async function main() {
 			data: {
 				email: `email${i + 1}`,
 				name: `user${i + 1}`,
+				roleId: i + 1,
 			},
 		})
 		console.log({ user })
@@ -54,6 +55,41 @@ async function main() {
 
 		console.log({ post2tags })
 	}
+
+	const adminRole = await prisma.role.create({
+		data: {
+			name: 'admin',
+			create: true,
+			delete: true,
+			manage: true,
+			read: true,
+			update: true,
+		},
+	})
+
+	const genericRole = await prisma.role.create({
+		data: {
+			name: 'generic',
+			create: false,
+			delete: false,
+			manage: false,
+			read: true,
+			update: true,
+		},
+	})
+
+	const guestRole = await prisma.role.create({
+		data: {
+			name: 'guest',
+			create: false,
+			delete: false,
+			manage: false,
+			read: true,
+			update: false,
+		},
+	})
+
+	console.log({ adminRole, genericRole, guestRole })
 
 	// const firstShop = await prisma.shop.create({
 	// 	data: {
