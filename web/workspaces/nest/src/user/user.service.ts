@@ -16,7 +16,13 @@ export class UserService {
 	}
 
 	findAll() {
-		return this.prismaService.user.findMany()
+		return this.prismaService.user.findMany({
+			include: {
+				posts: true,
+				profile: true,
+				role: true,
+			},
+		})
 		// return `This action returns all user`;
 	}
 
@@ -26,10 +32,9 @@ export class UserService {
 			include: {
 				posts: true,
 				profile: true,
-				// Profile: true,
+				role: true,
 			},
 		})
-		// return `This action returns a #${id} post`
 	}
 
 	update(originUsername: string, updateUserInput: UserUpdateInput) {
@@ -37,7 +42,6 @@ export class UserService {
 			data: updateUserInput,
 			where: { name: originUsername },
 		})
-		// return `This action updates a #${id} user`
 	}
 
 	remove(id: number) {
