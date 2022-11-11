@@ -7,18 +7,47 @@ async function main() {
 	await prisma.profile.deleteMany()
 	await prisma.tag.deleteMany()
 
-	// const firstStore = await prisma.store.create({
-	// 	data: {
-	// 		address: 'adresssss',
-	// 		storeName: 'firstshop',
-	// 	},
-	// })
+	const adminRole = await prisma.role.create({
+		data: {
+			name: 'admin',
+			create: true,
+			delete: true,
+			manage: true,
+			read: true,
+			update: true,
+		},
+	})
+
+	const genericRole = await prisma.role.create({
+		data: {
+			name: 'generic',
+			create: false,
+			delete: false,
+			manage: false,
+			read: true,
+			update: true,
+		},
+	})
+
+	const guestRole = await prisma.role.create({
+		data: {
+			name: 'guest',
+			create: false,
+			delete: false,
+			manage: false,
+			read: true,
+			update: false,
+		},
+	})
+
+	console.log({ adminRole, genericRole, guestRole })
+
 	for (let i = 0; i < 5; i++) {
 		const user = await prisma.user.create({
 			data: {
 				email: `email${i + 1}`,
 				name: `user${i + 1}`,
-				roleId: i + 1,
+				roleId: 2,
 			},
 		})
 		console.log({ user })
@@ -55,41 +84,6 @@ async function main() {
 
 		console.log({ post2tags })
 	}
-
-	const adminRole = await prisma.role.create({
-		data: {
-			name: 'admin',
-			create: true,
-			delete: true,
-			manage: true,
-			read: true,
-			update: true,
-		},
-	})
-
-	const genericRole = await prisma.role.create({
-		data: {
-			name: 'generic',
-			create: false,
-			delete: false,
-			manage: false,
-			read: true,
-			update: true,
-		},
-	})
-
-	const guestRole = await prisma.role.create({
-		data: {
-			name: 'guest',
-			create: false,
-			delete: false,
-			manage: false,
-			read: true,
-			update: false,
-		},
-	})
-
-	console.log({ adminRole, genericRole, guestRole })
 
 	// const firstShop = await prisma.shop.create({
 	// 	data: {

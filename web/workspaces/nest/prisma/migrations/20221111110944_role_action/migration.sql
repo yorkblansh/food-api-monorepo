@@ -2,7 +2,9 @@
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT,
-    "email" TEXT
+    "email" TEXT,
+    "roleId" INTEGER NOT NULL,
+    CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -33,6 +35,17 @@ CREATE TABLE "Tag" (
 );
 
 -- CreateTable
+CREATE TABLE "Role" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "manage" BOOLEAN NOT NULL DEFAULT false,
+    "create" BOOLEAN NOT NULL DEFAULT false,
+    "read" BOOLEAN NOT NULL DEFAULT false,
+    "update" BOOLEAN NOT NULL DEFAULT false,
+    "delete" BOOLEAN NOT NULL DEFAULT false
+);
+
+-- CreateTable
 CREATE TABLE "_TagPostRelation" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL,
@@ -48,6 +61,9 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Profile_userId_key" ON "Profile"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_TagPostRelation_AB_unique" ON "_TagPostRelation"("A", "B");
