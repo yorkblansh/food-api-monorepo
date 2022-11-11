@@ -11,19 +11,19 @@
 export class CreatePostInput {
     content?: Nullable<string>;
     createdAt: DateTime;
-    published: boolean = false;
-    title!: string;
+    published: boolean;
+    title: string;
     updatedAt: DateTime;
-    viewCount!: number;
+    viewCount: number;
 }
 
 export class UpdatePostInput {
     content?: Nullable<string>;
     createdAt: DateTime;
-    published: boolean = false;
-    title!: string;
+    published: boolean;
+    title: string;
     updatedAt: DateTime;
-    viewCount!: number;
+    viewCount: number;
 }
 
 export class CreateProfileInput {
@@ -34,17 +34,37 @@ export class UpdateProfileInput {
     bio?: Nullable<string>;
 }
 
+export class CreateRoleInput {
+    id: number;
+    name: string;
+    manage: boolean;
+    create: boolean;
+    read: boolean;
+    update: boolean;
+    delete: boolean;
+}
+
+export class UpdateRoleInput {
+    id: number;
+    name: string;
+    manage: boolean;
+    create: boolean;
+    read: boolean;
+    update: boolean;
+    delete: boolean;
+}
+
 export class CreateTagInput {
-    name!: string;
+    name: string;
 }
 
 export class UpdateTagInput {
-    name!: string;
+    name: string;
 }
 
 export class CreateUserInput {
-    name!: string;
-    email!: string;
+    name: string;
+    email: string;
 }
 
 export class UpdateUserInput {
@@ -53,13 +73,13 @@ export class UpdateUserInput {
 }
 
 export class Post {
-    id!: number;
+    id: number;
     content?: Nullable<string>;
     createdAt: DateTime;
-    published: boolean = false;
-    title!: string;
+    published: boolean;
+    title: string;
     updatedAt: DateTime;
-    viewCount!: number;
+    viewCount: number;
     author?: Nullable<User>;
     tags?: Nullable<Nullable<Tag>[]>;
 }
@@ -72,6 +92,10 @@ export abstract class IQuery {
     abstract profiles(): Nullable<Profile>[] | Promise<Nullable<Profile>[]>;
 
     abstract profile(id: number): Nullable<Profile> | Promise<Nullable<Profile>>;
+
+    abstract roles(): Nullable<Role>[] | Promise<Nullable<Role>[]>;
+
+    abstract role(id: number): Nullable<Role> | Promise<Nullable<Role>>;
 
     abstract tags(): Nullable<Tag>[] | Promise<Nullable<Tag>[]>;
 
@@ -95,6 +119,12 @@ export abstract class IMutation {
 
     abstract removeProfile(id: number): Nullable<Profile> | Promise<Nullable<Profile>>;
 
+    abstract createRole(createRoleInput: CreateRoleInput): Role | Promise<Role>;
+
+    abstract updateRole(originUsername: string, updateRoleInput: UpdateRoleInput): Role | Promise<Role>;
+
+    abstract removeRole(id: number): Nullable<Role> | Promise<Nullable<Role>>;
+
     abstract createTag(createTagInput: CreateTagInput): Tag | Promise<Tag>;
 
     abstract updateTag(id: number, updateTagInput: UpdateTagInput): Tag | Promise<Tag>;
@@ -109,8 +139,19 @@ export abstract class IMutation {
 }
 
 export class Profile {
-    id!: number;
+    id: number;
     bio?: Nullable<string>;
+    user?: Nullable<User>;
+}
+
+export class Role {
+    id: number;
+    name: string;
+    manage: boolean;
+    create: boolean;
+    read: boolean;
+    update: boolean;
+    delete: boolean;
     user?: Nullable<User>;
 }
 
@@ -121,11 +162,12 @@ export class Tag {
 }
 
 export class User {
-    id!: number;
-    name!: string;
-    email!: string;
+    id: number;
+    name: string;
+    email: string;
     posts?: Nullable<Nullable<Post>[]>;
     profile?: Nullable<Profile>;
+    role?: Nullable<Role>;
 }
 
 export type DateTime = any;
