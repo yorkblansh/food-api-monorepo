@@ -11,9 +11,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 // import { StoreModule } from './store/store.module';
 import { UserModule } from './user/user.module'
 import { PostModule } from './post/post.module'
-import { ProfileModule } from './profile/profile.module';
-import { TagModule } from './tag/tag.module';
-import { RoleModule } from './role/role.module';
+import { ProfileModule } from './profile/profile.module'
+import { TagModule } from './tag/tag.module'
+import { RoleModule } from './role/role.module'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
 	imports: [
@@ -32,6 +33,7 @@ import { RoleModule } from './role/role.module';
 		ProfileModule,
 		TagModule,
 		RoleModule,
+		AuthModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

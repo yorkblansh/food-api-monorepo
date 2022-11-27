@@ -8,6 +8,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export class LoginUserInput {
+    name?: Nullable<string>;
+    password?: Nullable<string>;
+}
+
 export class CreatePostInput {
     content?: Nullable<string>;
     createdAt: DateTime;
@@ -65,6 +70,7 @@ export class UpdateTagInput {
 export class CreateUserInput {
     name: string;
     email: string;
+    roleId?: Nullable<number>;
 }
 
 export class UpdateUserInput {
@@ -72,19 +78,14 @@ export class UpdateUserInput {
     email?: Nullable<string>;
 }
 
-export class Post {
-    id: number;
-    content?: Nullable<string>;
-    createdAt: DateTime;
-    published: boolean;
-    title: string;
-    updatedAt: DateTime;
-    viewCount: number;
-    author?: Nullable<User>;
-    tags?: Nullable<Nullable<Tag>[]>;
+export class LoginUserResponse {
+    user?: Nullable<User>;
+    token?: Nullable<string>;
 }
 
 export abstract class IQuery {
+    abstract loginUser(userLoginData?: Nullable<LoginUserInput>): Nullable<loginUserResponse> | Promise<Nullable<loginUserResponse>>;
+
     abstract posts(): Nullable<Post>[] | Promise<Nullable<Post>[]>;
 
     abstract post(id: number): Nullable<Post> | Promise<Nullable<Post>>;
@@ -103,7 +104,19 @@ export abstract class IQuery {
 
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
-    abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
+    abstract user(id?: Nullable<number>, name?: Nullable<string>): User | Promise<User>;
+}
+
+export class Post {
+    id: number;
+    content?: Nullable<string>;
+    createdAt: DateTime;
+    published: boolean;
+    title: string;
+    updatedAt: DateTime;
+    viewCount: number;
+    author?: Nullable<User>;
+    tags?: Nullable<Nullable<Tag>[]>;
 }
 
 export abstract class IMutation {
@@ -162,9 +175,10 @@ export class Tag {
 }
 
 export class User {
-    id: number;
-    name: string;
-    email: string;
+    id?: Nullable<number>;
+    name?: Nullable<string>;
+    email?: Nullable<string>;
+    password?: Nullable<string>;
     posts?: Nullable<Nullable<Post>[]>;
     profile?: Nullable<Profile>;
     role?: Nullable<Role>;

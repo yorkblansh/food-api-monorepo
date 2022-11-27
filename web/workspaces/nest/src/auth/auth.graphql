@@ -1,0 +1,53 @@
+# scalar DateTime
+
+# type Post {
+# 	id: Int!
+# 	content: String
+# 	createdAt: DateTime!
+# 	published: Boolean!
+# 	title: String!
+# 	updatedAt: DateTime!
+# 	viewCount: Int!
+# 	author: User
+# 	tags: [Tag]
+# }
+
+# input CreatePostInput {
+# 	content: String
+# 	createdAt: DateTime!
+# 	published: Boolean!
+# 	title: String!
+# 	updatedAt: DateTime!
+# 	viewCount: Int!
+# }
+
+# input UpdatePostInput {
+# 	content: String
+# 	createdAt: DateTime!
+# 	published: Boolean!
+# 	title: String!
+# 	updatedAt: DateTime!
+# 	viewCount: Int!
+# }
+
+# type Query {
+# 	posts: [Post]!
+# 	post(id: Int!): Post
+# }
+
+input LoginUserInput {
+	name: String
+	password: String
+}
+
+type loginUserResponse {
+	user: User
+	token: String
+}
+
+type Query {
+	loginUser(userLoginData: LoginUserInput): loginUserResponse
+	# createPost(createPostInput: CreatePostInput!): Post!
+	# updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
+	# removePost(id: Int!): Post
+}

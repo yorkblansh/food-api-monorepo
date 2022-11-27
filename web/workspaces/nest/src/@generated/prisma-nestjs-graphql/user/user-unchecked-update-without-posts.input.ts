@@ -16,6 +16,9 @@ export class UserUncheckedUpdateWithoutPostsInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     email?: NullableStringFieldUpdateOperationsInput;
 
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    password?: NullableStringFieldUpdateOperationsInput;
+
     @Field(() => ProfileUncheckedUpdateOneWithoutUserNestedInput, {nullable:true})
     profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput;
 

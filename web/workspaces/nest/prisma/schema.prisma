@@ -18,14 +18,15 @@ generator nestgraphql {
 }
 
 model User {
-  id      Int      @id @default(autoincrement())
-  name    String?  @unique
-  /// @Validator.IsEmail()
-  email   String?  @unique
-  posts   Post[]
-  profile Profile?
-  role    Role     @relation(fields: [roleId], references: [id])
-  roleId  Int
+  id       Int      @id @default(autoincrement())
+  name     String?  @unique
+  // @Validator.IsEmail()
+  email    String?  @unique
+  password String?  @unique
+  posts    Post[]
+  profile  Profile?
+  role     Role     @relation(fields: [roleId], references: [id])
+  roleId   Int
 }
 
 model Post {

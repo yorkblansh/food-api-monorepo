@@ -15,6 +15,9 @@ export class UserUncheckedUpdateManyInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     email?: NullableStringFieldUpdateOperationsInput;
 
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    password?: NullableStringFieldUpdateOperationsInput;
+
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     roleId?: IntFieldUpdateOperationsInput;
 }

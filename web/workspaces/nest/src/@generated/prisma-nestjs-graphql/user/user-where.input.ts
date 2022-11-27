@@ -27,6 +27,9 @@ export class UserWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     email?: StringNullableFilter;
 
+    @Field(() => StringNullableFilter, {nullable:true})
+    password?: StringNullableFilter;
+
     @Field(() => PostListRelationFilter, {nullable:true})
     posts?: PostListRelationFilter;
 

@@ -14,5 +14,8 @@ export class UserMinAggregateInput {
     email?: true;
 
     @Field(() => Boolean, {nullable:true})
+    password?: true;
+
+    @Field(() => Boolean, {nullable:true})
     roleId?: true;
 }

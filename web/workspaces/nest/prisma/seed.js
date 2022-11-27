@@ -45,9 +45,10 @@ async function main() {
 	for (let i = 0; i < 5; i++) {
 		const user = await prisma.user.create({
 			data: {
-				email: `email${i + 1}`,
+				email: `email${i + 1}@mail.ru`,
 				name: `user${i + 1}`,
 				roleId: 2,
+				password: `qwerty${i + 1}`,
 			},
 		})
 		console.log({ user })

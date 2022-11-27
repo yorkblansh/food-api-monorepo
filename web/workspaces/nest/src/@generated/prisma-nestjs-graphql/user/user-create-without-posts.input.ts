@@ -1,6 +1,5 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import * as Validator from 'class-validator';
 import { ProfileCreateNestedOneWithoutUserInput } from '../profile/profile-create-nested-one-without-user.input';
 import { RoleCreateNestedOneWithoutUserInput } from '../role/role-create-nested-one-without-user.input';
 
@@ -11,8 +10,10 @@ export class UserCreateWithoutPostsInput {
     name?: string;
 
     @Field(() => String, {nullable:true})
-    @Validator.IsEmail()
     email?: string;
+
+    @Field(() => String, {nullable:true})
+    password?: string;
 
     @Field(() => ProfileCreateNestedOneWithoutUserInput, {nullable:true})
     profile?: ProfileCreateNestedOneWithoutUserInput;

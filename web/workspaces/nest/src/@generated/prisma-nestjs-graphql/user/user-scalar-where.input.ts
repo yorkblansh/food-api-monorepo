@@ -24,6 +24,9 @@ export class UserScalarWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     email?: StringNullableFilter;
 
+    @Field(() => StringNullableFilter, {nullable:true})
+    password?: StringNullableFilter;
+
     @Field(() => IntFilter, {nullable:true})
     roleId?: IntFilter;
 }

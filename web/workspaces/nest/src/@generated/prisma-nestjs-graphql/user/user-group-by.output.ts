@@ -19,6 +19,9 @@ export class UserGroupBy {
     @Field(() => String, {nullable:true})
     email?: string;
 
+    @Field(() => String, {nullable:true})
+    password?: string;
+
     @Field(() => Int, {nullable:false})
     roleId!: number;
 
