@@ -5,8 +5,8 @@ import {
 	AbilityClass,
 	InferSubjects,
 } from '@casl/ability'
-import { User } from '../../@generated/prisma-nestjs-graphql/user/user.model'
-import { Role } from 'src/@generated/prisma-nestjs-graphql/role/role.model'
+import { User } from '../@generated/prisma-nestjs-graphql/user/user.model'
+import { Role } from '../@generated/prisma-nestjs-graphql/role/role.model'
 
 export enum Action {
 	manage = 'manage', // wildcard for any action

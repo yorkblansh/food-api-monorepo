@@ -4,10 +4,15 @@ import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { UserCreateInput } from '../@generated/prisma-nestjs-graphql/user/user-create.input'
 import { UserUpdateInput } from '../@generated/prisma-nestjs-graphql/user/user-update.input'
+import { AbilityFactory } from '../ability/ability.factory'
+import { User } from '../@generated/prisma-nestjs-graphql/user/user.model'
 
 @Resolver('User')
 export class UserResolver {
-	constructor(private readonly userService: UserService) {}
+	constructor(
+		private readonly userService: UserService,
+		private abilityFactory: AbilityFactory,
+	) {}
 
 	@Mutation('createUser')
 	create(@Args('createUserInput') createUserInput: UserCreateInput) {
