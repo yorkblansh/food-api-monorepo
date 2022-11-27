@@ -28,6 +28,7 @@
 	},
 	"dependencies": {
 		"@apollo/server-plugin-landing-page-graphql-playground": "^4.0.0",
+		"@casl/ability": "^6.3.2",
 		"@nestjs/apollo": "^10.1.4",
 		"@nestjs/axios": "^0.1.0",
 		"@nestjs/common": "^9.1.6",

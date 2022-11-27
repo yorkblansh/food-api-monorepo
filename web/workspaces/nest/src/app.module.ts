@@ -15,6 +15,7 @@ import { ProfileModule } from './profile/profile.module'
 import { TagModule } from './tag/tag.module'
 import { RoleModule } from './role/role.module'
 import { AuthModule } from './auth/auth.module'
+import { AbilityModule } from './ability/ability.module';
 
 @Module({
 	imports: [
@@ -34,6 +35,7 @@ import { AuthModule } from './auth/auth.module'
 		TagModule,
 		RoleModule,
 		AuthModule,
+		AbilityModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
