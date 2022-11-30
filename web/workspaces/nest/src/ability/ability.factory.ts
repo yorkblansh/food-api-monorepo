@@ -48,7 +48,7 @@ export class AbilityFactory {
 						roleName === Action.delete,
 				)
 				.map(([roleName, canOrCannot]: RoleFlatTypings) =>
-					canOrCannot ? can(roleName, User) : cannot(roleName, User),
+					canOrCannot ? can(roleName, 'all') : cannot(roleName, 'all'),
 				)
 		}
 	}
