@@ -10,6 +10,10 @@ import { UserWhereInput } from '../@generated/prisma-nestjs-graphql/user/user-wh
 import { Either, left, right } from '@sweet-monads/either'
 import { User } from '../@generated/prisma-nestjs-graphql/user/user.model'
 import { UserNotFoundException } from '../exceptions/user-not-found.exception'
+import { pipe } from 'fp-ts/lib/function'
+import * as E from 'fp-ts/lib/Either'
+import * as O from 'fp-ts/lib/Option'
+import { consoleLog } from '../utils/consoleLog'
 
 // class UserNotFoundError extends UserNotFoundException {
 // 	name: 'UserNotFoundError'
@@ -57,15 +61,20 @@ export class UserService {
 		} catch (error) {}
 	}
 
-	findOne(userWhereUniqueInput: UserWhereUniqueInput) {
-		return this.prismaService.user.findUnique({
-			where: userWhereUniqueInput,
-			include: {
-				posts: true,
-				profile: true,
-				role: true,
-			},
-		})
+	async findOne(userWhereUniqueInput: UserWhereUniqueInput) {
+		return pipe(
+			await this.prismaService.user.findUnique({
+				where: userWhereUniqueInput,
+				include: {
+					posts: true,
+					profile: true,
+					role: true,
+				},
+			}),
+			(user) =>
+				user ? E.right(user) : E.left(new UserNotFoundException(user.name)),
+			consoleLog,
+		)
 	}
 
 	update(originUsername: string, updateUserInput: UserUpdateInput) {
