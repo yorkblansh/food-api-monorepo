@@ -19,7 +19,7 @@ generator nestgraphql {
 
 model User {
   id       Int      @id @default(autoincrement())
-  name     String?  @unique
+  name     String  @unique
   // @Validator.IsEmail()
   email    String?  @unique
   password String?  @unique
