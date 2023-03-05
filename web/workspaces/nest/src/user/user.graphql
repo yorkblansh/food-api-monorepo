@@ -21,7 +21,7 @@ input UpdateUserInput {
 
 type Query {
 	users: [User]!
-	user(id: Int, name: String): User!
+	user(id: Int, name: String): User
 }
 
 type Mutation {

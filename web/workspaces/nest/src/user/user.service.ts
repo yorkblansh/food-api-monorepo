@@ -13,6 +13,7 @@ import { UserNotFoundException } from '../exceptions/user-not-found.exception'
 import { pipe } from 'fp-ts/lib/function'
 import * as E from 'fp-ts/lib/Either'
 import * as O from 'fp-ts/lib/Option'
+import * as TE from 'fp-ts/lib/TaskEither'
 import { consoleLog } from '../utils/consoleLog'
 
 // class UserNotFoundError extends UserNotFoundException {
@@ -63,18 +64,50 @@ export class UserService {
 
 	async findOne(userWhereUniqueInput: UserWhereUniqueInput) {
 		return pipe(
-			await this.prismaService.user.findUnique({
-				where: userWhereUniqueInput,
-				include: {
-					posts: true,
-					profile: true,
-					role: true,
-				},
-			}),
-			(user) =>
-				user ? E.right(user) : E.left(new UserNotFoundException(user.name)),
-			consoleLog,
+			TE.tryCatch(
+				() =>
+					this.prismaService.user.findUnique({
+						where: userWhereUniqueInput,
+						include: {
+							posts: true,
+							profile: true,
+							role: true,
+						},
+					}),
+				(r) => new UserNotFoundException(userWhereUniqueInput.name),
+			),
 		)
+
+		// const getUser = () => {
+		// 	try {
+		// 		return O.some(
+		// 			this.prismaService.user.findUnique({
+		// 				where: userWhereUniqueInput,
+		// 				include: {
+		// 					posts: true,
+		// 					profile: true,
+		// 					role: true,
+		// 				},
+		// 			}),
+		// 		)
+		// 	} catch (error) {
+		// 		O.none
+		// 	}
+		// }
+
+		// return pipe(
+		// 	O.tryCatch(() => getUser()),
+		// 	O.map((user) => {
+		// 		console.log({ user })
+		// 		return user
+		// 	}),
+		// 	O.getOrElse(() => false),
+		// 	// (user) =>
+		// 	// 	user
+		// 	// 		? E.right(user)
+		// 	// 		: E.left(new UserNotFoundException(userWhereUniqueInput.name)),
+		// 	// consoleLog,
+		// )
 	}
 
 	update(originUsername: string, updateUserInput: UserUpdateInput) {
