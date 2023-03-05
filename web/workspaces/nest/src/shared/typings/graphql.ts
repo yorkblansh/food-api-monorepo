@@ -104,7 +104,7 @@ export abstract class IQuery {
 
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
-    abstract user(id?: Nullable<number>, name?: Nullable<string>): User | Promise<User>;
+    abstract user(id?: Nullable<number>, name?: Nullable<string>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export class Post {
